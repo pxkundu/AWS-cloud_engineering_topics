@@ -187,4 +187,4 @@ Let's break it down even further to maximize learning about foundational AWS ser
 
 ---
 
-This ultra-detailed breakdown ensures participants not only learn the “how” but also the “why” behind AWS basics, with practical steps and chaos to cement the experience. Want to tweak anything—like adding more S3/IAM depth or adjusting the chaos? Let me know!
+This ultra-detailed breakdown ensures participants not only learn the “how” but also the “why” behind AWS basics, with practical steps and chaos to cement the experience.
