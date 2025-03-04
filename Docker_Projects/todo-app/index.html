@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h1>To-Do List</h1>
+    <ul id="todos"></ul>
+    <input id="task" type="text" placeholder="New task">
+    <button onclick="addTodo()">Add</button>
+    <script>
+        fetch('http://localhost:5000/todos')
+            .then(res => res.json())
+            .then(data => {
+                const ul = document.getElementById('todos');
+                data.forEach(todo => {
+                    const li = document.createElement('li');
+                    li.textContent = todo;
+                    ul.appendChild(li);
+                });
+            })
+            .catch(err => console.error('Fetch error:', err));
+        function addTodo() {
+            const task = document.getElementById('task').value;
+            fetch('http://localhost:5000/todos', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ task })
+            })
+            .then(() => location.reload())
+            .catch(err => console.error('Add error:', err));
+        }
+    </script>
+</body>
+</html>
