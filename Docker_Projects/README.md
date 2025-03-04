@@ -47,9 +47,6 @@ Docker is a platform that uses **containerization** to package applications and 
 
 - **Beginner Analogy**: Think of a container as a lunchbox—everything you need (food, utensils) is packed inside, ready to go anywhere.
 
-Below is an extensive conceptual and practical training guide on Docker, structured according to your provided Table of Contents. This is tailored for someone with your background in Linux commands and DevOps tasks, aiming to give you a solid foundation and actionable skills. Let’s dive in!
-
----
 - **Conceptual Analogy**: Think of Docker as a shipping container for software. Just as a physical container standardizes transport across ships, trucks, and trains, Docker standardizes app deployment across dev, test, and prod.
 - **Under the Hood**: Docker uses Linux kernel features like namespaces (isolation) and cgroups (resource limits) to create containers.
 
