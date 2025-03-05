@@ -319,5 +319,3 @@ Master **serverless computing** by designing and securing an event-driven archit
 3. **Content Upload Trigger**: Lambda processes uploads from S3, notifies via SNS (Netflix encoding pipeline).
 
 ---
-
-This Day 2 is now as extensive as Week 1, Day 1, with rich theory, detailed practical steps, and real-world relevance.
