@@ -36,14 +36,14 @@ This README serves as a wrap-up index for **Week 2, Day 5** of our DevOps learni
   5. **Deployment**: Applied Kubernetes manifests (Deployments, Services, Ingress, PVC) for app components.
   6. **CI/CD**: Configured AWS CodePipeline to deploy from GitHub to EKS.
 - **Structure**:
-  
+```
   eks-capstone/
   ├── frontend/                # React frontend
   ├── api/                    # Node.js API
   ├── k8s/                    # Kubernetes manifests
   ├── pipeline/               # CI/CD configs
   └── README.md              # This file
-  
+ ```
 - **Commands**: See detailed steps in the [full Day 5 guide](#).
 
 ### 3. Chaos Twist: "Production Siege" (1-1.5 hours)
