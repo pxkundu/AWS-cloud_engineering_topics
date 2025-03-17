@@ -169,12 +169,12 @@ Resources:
       SecurityGroupIds:
         - !Ref JenkinsMasterSG
       IamInstanceProfile: !Ref JenkinsInstanceProfile
-      ImageId: ami-0c55b159cbfafe1f0  # Amazon Linux 2 in us-east-1
+      ImageId: ami-08b5b3a93ed654d19  # Amazon Linux 2 in us-east-1
       UserData:
         Fn::Base64: !Sub |
           #!/bin/bash
           yum update -y
-          amazon-linux-extras install java-openjdk11 -y
+          sudo dnf install java-17-amazon-corretto -y
           yum install -y awscli git
           wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
           rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
@@ -204,12 +204,12 @@ Resources:
       SecurityGroupIds:
         - !Ref JenkinsSlaveSG
       IamInstanceProfile: !Ref JenkinsInstanceProfile
-      ImageId: ami-0c55b159cbfafe1f0
+      ImageId: ami-08b5b3a93ed654d19
       UserData:
         Fn::Base64: !Sub |
           #!/bin/bash
           yum update -y
-          amazon-linux-extras install java-openjdk11 docker -y
+          sudo dnf install java-17-amazon-corretto docker -y
           systemctl start docker
           systemctl enable docker
           usermod -aG docker ec2-user
