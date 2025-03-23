@@ -1,4 +1,6 @@
-Below is a detailed breakdown of each day’s activities for the 6-week bootcamp, with step-by-step instructions for participants to follow. I’ve kept the out-of-the-box approach intact, blending foundational learning with chaos, gamification, and real-world simulation. Each day is structured for 4-6 hours, with clear tasks, tools, and processes to guide intermediate AWS DevOps and Cloud Engineers.
+Below is a detailed breakdown of each day’s activities for the 6-week bootcamp, with step-by-step instructions for participants to follow. 
+
+I’ve kept the out-of-the-box approach intact, blending foundational learning with chaos, gamification, and real-world simulation. Each day is structured for 4-6 hours, with clear tasks, tools, and processes to guide intermediate AWS DevOps and Cloud Engineers.
 
 ---
 
