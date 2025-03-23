@@ -56,8 +56,9 @@ By building this, learners gain hands-on experience with enterprise-grade workfl
 CRMSupplyChainCapstone/
 ├── docs/                       # Documentation
 │   ├── architecture.md         # System architecture overview
-│   └── README.md              # Project setup and usage
-├── infrastructure/             # Terraform IaC
+│   ├── CONFIG-README-FRONTEND.md  # Phase 3: Frontend setup guide (new)
+│   └── README.md               # Project setup and usage
+├── infrastructure/             # Terraform IaC (placeholder for Phase 5)
 │   ├── main.tf                # Root configuration
 │   ├── variables.tf           # Input variables
 │   ├── outputs.tf             # Output values
@@ -77,66 +78,85 @@ CRMSupplyChainCapstone/
 │           ├── variables.tf
 │           └── outputs.tf
 ├── services/                   # Microservices code
-│   ├── crm-api/               # CRM API service
+│   ├── crm-api/               # CRM API service (Phase 2 placeholder)
 │   │   ├── Dockerfile
 │   │   ├── app.js
 │   │   └── package.json
-│   ├── crm-ui/                # CRM UI service
+│   ├── crm-ui/                # CRM UI service (Phase 3)
+│   │   ├── Dockerfile         # Phase 3: Docker config
+│   │   ├── app.js             # Phase 3: Express app
+│   │   ├── package.json       # Phase 3: Dependencies
+│   │   ├── views/             # Phase 3: EJS templates
+│   │   │   ├── index.ejs      # Phase 3: Dashboard
+│   │   │   ├── order-details.ejs  # Phase 3: Order details
+│   │   │   └── partials/      # Phase 3: Reusable components
+│   │   │       └── order-table.ejs  # Phase 3: Order table
+│   │   └── public/            # Phase 3: Static assets
+│   │       ├── styles.css     # Phase 3: CSS
+│   │       └── script.js      # Phase 3: Client-side JS
+│   ├── crm-analytics/         # CRM analytics service (Phase 2 placeholder)
 │   │   ├── Dockerfile
 │   │   ├── app.js
 │   │   └── package.json
-│   ├── crm-analytics/         # CRM analytics service
+│   ├── inventory-service/     # Supply chain inventory service (Phase 2 placeholder)
 │   │   ├── Dockerfile
 │   │   ├── app.js
 │   │   └── package.json
-│   ├── inventory-service/     # Supply chain inventory service
+│   ├── logistics-service/     # Supply chain logistics service (Phase 2 placeholder)
 │   │   ├── Dockerfile
 │   │   ├── app.js
 │   │   └── package.json
-│   ├── logistics-service/     # Supply chain logistics service
+│   ├── order-service/         # Supply chain order service (Phase 2 placeholder)
 │   │   ├── Dockerfile
 │   │   ├── app.js
 │   │   └── package.json
-│   ├── order-service/         # Supply chain order service
+│   ├── analytics-service/     # Supply chain analytics service (Phase 2 placeholder)
 │   │   ├── Dockerfile
 │   │   ├── app.js
 │   │   └── package.json
-│   ├── analytics-service/     # Supply chain analytics service
-│   │   ├── Dockerfile
-│   │   ├── app.js
-│   │   └── package.json
-│   └── api-gateway/           # NGINX API gateway
+│   └── api-gateway/           # NGINX API gateway (Phase 2 placeholder)
 │       ├── Dockerfile
 │       ├── nginx.conf
 │       └── entrypoint.sh
 ├── kubernetes/                 # Kubernetes manifests
 │   ├── crm/                   # CRM K8s resources
-│   │   ├── deployment.yaml
-│   │   └── service.yaml
+│   │   ├── deployment.yaml    # Original placeholder (empty)
+│   │   ├── service.yaml       # Original placeholder (empty)
+│   │   ├── crm-ui-deployment.yaml       # Phase 4: CRM UI deployment
+│   │   ├── crm-ui-service.yaml          # Phase 4: CRM UI service
+│   │   ├── crm-api-deployment.yaml      # Phase 4: CRM API deployment
+│   │   ├── crm-api-service.yaml         # Phase 4: CRM API service
+│   │   ├── order-service-deployment.yaml  # Phase 4: Order service deployment
+│   │   ├── order-service-service.yaml    # Phase 4: Order service
+│   │   ├── crm-analytics-deployment.yaml  # Phase 4: CRM analytics deployment
+│   │   └── crm-analytics-service.yaml    # Phase 4: CRM analytics service
 │   ├── supply-chain/          # Supply chain K8s resources
-│   │   ├── inventory-deployment.yaml
-│   │   ├── inventory-service.yaml
-│   │   ├── logistics-deployment.yaml
-│   │   ├── logistics-service.yaml
-│   │   ├── order-deployment.yaml
-│   │   ├── order-service.yaml
-│   │   ├── analytics-deployment.yaml
-│   │   └── analytics-service.yaml
+│   │   ├── inventory-deployment.yaml     # Phase 4: Inventory deployment (updated from placeholder)
+│   │   ├── inventory-service.yaml        # Phase 4: Inventory service (updated from placeholder)
+│   │   ├── logistics-deployment.yaml     # Phase 4: Logistics deployment (updated from placeholder)
+│   │   ├── logistics-service.yaml        # Phase 4: Logistics service (updated from placeholder)
+│   │   ├── order-deployment.yaml         # Phase 4: Order deployment (updated from placeholder)
+│   │   ├── order-service.yaml            # Phase 4: Order service (updated from placeholder)
+│   │   ├── analytics-deployment.yaml     # Phase 4: Analytics deployment (updated from placeholder)
+│   │   ├── analytics-service.yaml        # Phase 4: Analytics service (updated from placeholder)
+│   │   ├── tracking-ui-deployment.yaml   # Phase 4: Tracking UI deployment
+│   │   ├── tracking-ui-service.yaml      # Phase 4: Tracking UI service
+│   │   └── analytics-service-hpa.yaml    # Phase 4: HPA for analytics-service
 │   └── ingress/               # Ingress configuration
-│       └── ingress.yaml
-├── pipeline/                   # CI/CD configuration
+│       └── ingress.yaml       # Phase 4: NGINX Ingress (updated from placeholder)
+├── pipeline/                   # CI/CD configuration (placeholder for Phase 5)
 │   ├── Jenkinsfile            # Jenkins pipeline
 │   └── scripts/               # Helper scripts
 │       ├── build.sh
 │       ├── deploy.sh
 │       └── test.sh
-├── tests/                      # Automated tests
+├── tests/                      # Automated tests (placeholder)
 │   ├── integration/           # Integration tests
 │   │   └── test-order-flow.sh
 │   └── unit/                  # Unit tests
 │       └── test-services.sh
-├── .gitignore                 # Git ignore file
-└── .dockerignore              # Docker ignore file
+├── .gitignore                 # Git ignore file (updated in Phase 3/4)
+└── .dockerignore              # Docker ignore file (updated in Phase 3/4)
 ```
 ---
 
