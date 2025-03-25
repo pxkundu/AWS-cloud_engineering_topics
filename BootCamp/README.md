@@ -1,8 +1,82 @@
+# DevSecOps-Bootcamp
+6-week DevSecOps bootcamp with step-by-step instructions for participants to follow. Used out-of-the-box approach intact, blending foundational learning with chaos, gamification, and real-world simulation.
+
 Below is a detailed breakdown of each day’s activities for the 6-week bootcamp, with step-by-step instructions for participants to follow. 
 
 I’ve kept the out-of-the-box approach intact, blending foundational learning with chaos, gamification, and real-world simulation. Each day is structured for 4-6 hours, with clear tasks, tools, and processes to guide intermediate AWS DevOps and Cloud Engineers.
 
 ---
+### Content Index
+
+## Table of Contents
+
+### Week1
+
+- [Week1 Overview](Week1/README.md)
+- [Week1 Day1 Overview](Week1/Day1/README.md)
+- [Week1 Day2 Overview](Week1/Day2/README.md)
+- [Week1 Day3 Overview](Week1/Day3/README.md)
+- [Week1 Day4 Overview](Week1/Day4/README.md)
+- [Week1 Day5 Overview](Week1/Day5/README.md)
+  - [Day5 Documentation](Week1/Day5/README.md)
+- [Week1 Topics Overview](Week1/Topics/README.md)
+
+### Week2
+
+- [Week2 Overview](Week2/README.md)
+- [Week2 Day1 Overview](Week2/Day1/README.md)
+- [Week2 Day2 Overview](Week2/Day2/README.md)
+- [Week2 Day3 Overview](Week2/Day3/README.md)
+- [Week2 Day4 Overview](Week2/Day4/README.md)
+  - [Day4 Documentation](Week2/Day4/README.md)
+- [Week2 Day5 Overview](Week2/Day5/README.md)
+  - [Day5 Documentation](Week2/Day5/README.md)
+- [Week2 Topics Overview](Week2/Topics/README.md)
+
+### Week3
+
+- [Week3 Overview](Week3/README.md)
+- [Week3 Day1 Overview](Week3/Day1/README.md)
+- [Week3 Day2 Overview](Week3/Day2/README.md)
+- [Week3 Day3 Overview](Week3/Day3/README.md)
+  - [Week3 Day3 Documentation](Week3/Day3/week3-day3/README.md)
+  - [Pipeline Lib Documentation](Week3/Day3/week3-day3/pipeline-lib/README.md)
+  - [Task Manager Documentation](Week3/Day3/week3-day3/task-manager/README.md)
+- [Week3 Day4 Overview](Week3/Day4/README.md)
+  - [Week3 Day4 Documentation](Week3/Day4/week3-day4/README.md)
+  - [Pipeline Lib Documentation](Week3/Day4/week3-day4/pipeline-lib/README.md)
+  - [Task Manager Gitops Documentation](Week3/Day4/week3-day4/task-manager-gitops/README.md)
+- [Week3 Day5 Overview](Week3/Day5/README.md)
+  - [Jenkins Master Slave Automation Documentation](Week3/Day5/JenkinsMasterSlaveAutomation/README.md)
+- [Week3 Topics Overview](Week3/Topics/README.md)
+
+### Week4
+
+- [Week4 Overview](Week4/README.md)
+- [Week4 Day1 Overview](Week4/Day1/README.md)
+  - [Static Website Terraform Jenkins Documentation](Week4/Day1/StaticWebsiteTerraformJenkins/README.md)
+- [Week4 Day2 Overview](Week4/Day2/README.md)
+  - [Project With Advance Topics Documentation](Week4/Day2/ProjectWithAdvanceTopics/README.md)
+  - [Crm Terraform Jenkins Documentation](Week4/Day2/ProjectWithAdvanceTopics/CRMTerraformJenkins/README.md)
+- [Week4 Day3 Overview](Week4/Day3/README.md)
+  - [Message Encoder Decoder K8s Documentation](Week4/Day3/MessageEncoderDecoderK8s/README.md)
+- [Week4 Day4 Overview](Week4/Day4/README.md)
+- [Week4 Day5 Overview](Week4/Day5/README.md)
+  - [Crm Supply Chain Capstone Documentation](Week4/Day5/CRMSupplyChainCapstone/README.md)
+  - [Docs Documentation](Week4/Day5/CRMSupplyChainCapstone/docs/README.md)
+  - [Project Implementation Plan Documentation](Week4/Day5/ProjectImplementationPlan/README.md)
+  - [Phase1 Documentation](Week4/Day5/ProjectImplementationPlan/Phase1/README.md)
+  - [Phase2 Documentation](Week4/Day5/ProjectImplementationPlan/Phase2/README.md)
+  - [Phase3 Documentation](Week4/Day5/ProjectImplementationPlan/Phase3/README.md)
+  - [Phase4 Documentation](Week4/Day5/ProjectImplementationPlan/Phase4/README.md)
+  - [Phase5 Documentation](Week4/Day5/ProjectImplementationPlan/Phase5/README.md)
+
+### Week5
+
+- [Week5 Overview](Week5/README.md)
+- [Week5 Day1 Overview](Week5/Day1/README.md)
+
+--- 
 
 ### Week 1: Core AWS Foundations with a Twist
 **Goal**: Build AWS basics with light chaos to spark engagement.
