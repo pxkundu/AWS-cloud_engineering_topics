@@ -6,6 +6,10 @@
 
 ---
 
+Reference Project: https://github.com/pxkundu/JenkinsTask/tree/feature/docker-cloud-watch-logging
+
+---
+
 ### Key Learning Topics
 
 #### 1. AWS Cost Anomaly Detection
