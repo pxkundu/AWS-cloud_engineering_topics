@@ -1,8 +1,8 @@
 # Kubernetes Architecture Notes
-- **Master Node**: Runs control plane components (API server, scheduler, controller manager, etcd).
-- **Worker Node**: Runs kubelet, kube-proxy, and container runtime (containerd) to manage pods.
-- **Networking**: Uses Flannel CNI for pod-to-pod communication.
-- **Key Objects**:
-  - Pod: Smallest deployable unit.
-  - Deployment: Manages pod replicas.
-  - Service: Exposes pods to the network.
+- **Master Node**: Runs control plane (API server, scheduler, controller manager, etcd).
+- **Worker Node**: Runs kubelet, kube-proxy, container runtime.
+- **Networking**: Flannel in `kube-flannel` namespace.
+- **Helm**: Package manager for Kubernetes:
+  - Charts: Pre-packaged apps (e.g., Nginx).
+  - Namespaces: Isolates apps (e.g., `my-app`).
+  - Releases: Managed instances of charts.
