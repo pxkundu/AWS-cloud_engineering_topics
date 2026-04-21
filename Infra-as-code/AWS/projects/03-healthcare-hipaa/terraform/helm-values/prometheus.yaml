@@ -1,0 +1,57 @@
+prometheus:
+  prometheusSpec:
+    retention: 30d
+    retentionSize: "50GB"
+    replicas: 2
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: gp3
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 50Gi
+    # HIPAA: Scrape all namespaces
+    podMonitorSelectorNilUsesHelmValues: false
+    serviceMonitorSelectorNilUsesHelmValues: false
+
+grafana:
+  replicas: 2
+  persistence:
+    enabled: true
+    size: 10Gi
+  adminPassword: "" # Set via secret
+  grafana.ini:
+    auth:
+      disable_login_form: false
+    auth.generic_oauth:
+      enabled: true
+      name: AWS SSO
+    security:
+      cookie_secure: true
+      strict_transport_security: true
+  sidecar:
+    dashboards:
+      enabled: true
+      searchNamespace: ALL
+
+alertmanager:
+  alertmanagerSpec:
+    replicas: 2
+    storage:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: gp3
+          resources:
+            requests:
+              storage: 10Gi
+
+# HIPAA: Audit all API calls
+kubeApiServer:
+  enabled: true
+
+kubeEtcd:
+  enabled: true
+
+kubeControllerManager:
+  enabled: true

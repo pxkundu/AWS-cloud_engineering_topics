@@ -1,0 +1,145 @@
+{
+  "Comment": "PCI-DSS compliant transaction processing workflow",
+  "StartAt": "ValidateTransaction",
+  "States": {
+    "ValidateTransaction": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {
+        "FunctionName": "${fraud_detector_arn}",
+        "Payload.$": "$"
+      },
+      "ResultPath": "$.validation",
+      "Retry": [{
+        "ErrorEquals": ["Lambda.ServiceException", "Lambda.AWSLambdaException"],
+        "IntervalSeconds": 2,
+        "MaxAttempts": 3,
+        "BackoffRate": 2
+      }],
+      "Catch": [{
+        "ErrorEquals": ["ValidationError"],
+        "Next": "HandleValidationError",
+        "ResultPath": "$.error"
+      }],
+      "Next": "FraudScoreCheck"
+    },
+    "FraudScoreCheck": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Variable": "$.validation.Payload.fraudScore",
+          "NumericGreaterThan": 0.8,
+          "Next": "FlagFraudulentTransaction"
+        },
+        {
+          "Variable": "$.validation.Payload.fraudScore",
+          "NumericGreaterThan": 0.5,
+          "Next": "ManualReviewQueue"
+        }
+      ],
+      "Default": "EnrichTransaction"
+    },
+    "FlagFraudulentTransaction": {
+      "Type": "Parallel",
+      "Branches": [
+        {
+          "StartAt": "SendFraudAlert",
+          "States": {
+            "SendFraudAlert": {
+              "Type": "Task",
+              "Resource": "arn:aws:states:::sns:publish",
+              "Parameters": {
+                "TopicArn": "${alert_topic_arn}",
+                "Subject": "FRAUD ALERT",
+                "Message.$": "States.JsonToString($)"
+              },
+              "End": true
+            }
+          }
+        },
+        {
+          "StartAt": "StoreFraudRecord",
+          "States": {
+            "StoreFraudRecord": {
+              "Type": "Task",
+              "Resource": "arn:aws:states:::dynamodb:putItem",
+              "Parameters": {
+                "TableName": "${table_name}",
+                "Item": {
+                  "PK": { "S.$": "States.Format('TXN#{}', $.transactionId)" },
+                  "SK": { "S.$": "States.Format('STATUS#FRAUD#{}', $.timestamp)" },
+                  "GSI1PK": { "S.$": "States.Format('USER#{}', $.userId)" },
+                  "GSI1SK": { "S.$": "States.Format('TXN#{}', $.transactionId)" },
+                  "status": { "S": "FRAUD_DETECTED" },
+                  "fraudScore": { "N.$": "States.JsonToString($.validation.Payload.fraudScore)" }
+                }
+              },
+              "End": true
+            }
+          }
+        }
+      ],
+      "Next": "TransactionRejected"
+    },
+    "ManualReviewQueue": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::sqs:sendMessage.waitForTaskToken",
+      "Parameters": {
+        "QueueUrl": "https://sqs.us-east-1.amazonaws.com/ACCOUNT/fintech-review-queue",
+        "MessageBody": {
+          "taskToken.$": "$$.Task.Token",
+          "transaction.$": "$"
+        }
+      },
+      "HeartbeatSeconds": 3600,
+      "Next": "EnrichTransaction"
+    },
+    "EnrichTransaction": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {
+        "FunctionName": "${enricher_arn}",
+        "Payload.$": "$"
+      },
+      "ResultPath": "$.enriched",
+      "Retry": [{
+        "ErrorEquals": ["Lambda.ServiceException"],
+        "MaxAttempts": 3,
+        "BackoffRate": 2
+      }],
+      "Next": "StoreTransaction"
+    },
+    "StoreTransaction": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::dynamodb:putItem",
+      "Parameters": {
+        "TableName": "${table_name}",
+        "Item": {
+          "PK": { "S.$": "States.Format('TXN#{}', $.transactionId)" },
+          "SK": { "S.$": "States.Format('DATE#{}', $.timestamp)" },
+          "GSI1PK": { "S.$": "States.Format('USER#{}', $.userId)" },
+          "GSI1SK": { "S.$": "States.Format('TXN#{}', $.transactionId)" },
+          "GSI2PK": { "S.$": "States.Format('MERCHANT#{}', $.merchantId)" },
+          "amount": { "N.$": "States.JsonToString($.amount)" },
+          "currency": { "S.$": "$.currency" },
+          "status": { "S": "PROCESSED" },
+          "fraudScore": { "N.$": "States.JsonToString($.validation.Payload.fraudScore)" }
+        }
+      },
+      "Next": "TransactionComplete"
+    },
+    "TransactionComplete": {
+      "Type": "Succeed"
+    },
+    "TransactionRejected": {
+      "Type": "Fail",
+      "Error": "FraudDetected",
+      "Cause": "Transaction flagged as fraudulent"
+    },
+    "HandleValidationError": {
+      "Type": "Fail",
+      "Error": "ValidationFailed",
+      "Cause": "Transaction failed validation"
+    }
+  }
+}

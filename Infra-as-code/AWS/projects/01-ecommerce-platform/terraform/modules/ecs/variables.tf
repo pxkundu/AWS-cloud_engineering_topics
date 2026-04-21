@@ -1,0 +1,9 @@
+variable "cluster_name"    { type = string }
+variable "vpc_id"          { type = string }
+variable "private_subnets" { type = list(string) }
+variable "public_subnets"  { type = list(string) }
+variable "alb_sg_id"       { type = string }
+variable "ecs_sg_id"       { type = string }
+variable "ecr_repo_url"    { type = string }
+variable "image_tag"       { type = string }
+variable "certificate_arn" { type = string }
